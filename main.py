@@ -1,6 +1,7 @@
 import datetime as dt
 from scraper_provider import ScraperProvider
 from soup_handler import SoupHandler
+from spotify_handler import SpotifyHandler
 
 
 date_to = input("Which year you want to travel to? Type the date in YYYY-MM-DD: ").split("-")
@@ -20,3 +21,6 @@ else:
     if data:
         sh = SoupHandler(data)
         songs = sh.return_songs_list()
+        spoty_handler = SpotifyHandler()
+        spoty_handler.create_songs_uri_list(songs_list=songs, year=year)
+        spoty_handler.create_playlist(date=str(date))
