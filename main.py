@@ -1,5 +1,6 @@
 import datetime as dt
 from scraper_provider import ScraperProvider
+from soup_handler import SoupHandler
 
 
 date_to = input("Which year you want to travel to? Type the date in YYYY-MM-DD: ").split("-")
@@ -16,3 +17,6 @@ except ValueError as err:
 else:
     scrapper = ScraperProvider(str(date))
     data = scrapper.search_hot_100()
+    if data:
+        sh = SoupHandler(data)
+        songs = sh.return_songs_list()
